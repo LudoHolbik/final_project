@@ -22,7 +22,7 @@
             }
 
             .flex-center {
-                align-items: center;
+               
                 display: flex;
                 justify-content: center;
             }
@@ -35,6 +35,7 @@
                 position: absolute;
                 right: 10px;
                 top: 18px;
+                z-index:1;
             }
 
             .title {
@@ -42,7 +43,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -54,7 +55,9 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+
+<section class="container">
+            <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -68,7 +71,6 @@
 
             <div class="content">
 
-<section class="container">
   <div class="left-half">
       <img class="logo" src="img/logo.png"alt="urban_explorer">
           <div class="form-wrapper">
