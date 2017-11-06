@@ -29,8 +29,7 @@
   }
 
  .right-half {
-    background-image: url('img/kız.jpg');
-    position: absolute;
+    background-image: url('../img/kız.jpg');
     background-size: cover;
     right: 0px;
     width: 50%;
