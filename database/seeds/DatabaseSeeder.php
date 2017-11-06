@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'The Nicholas Hotel Residence',
             'type'=> 'Hotels & Hostels, etc.',
             'address' => 'Malostranské nám. 5/28, 110 00 Praha-Malá Strana-Malá Strana',	 
-            'description' => 'The friendly Sir Toby\'s is a Prague hostel pioneer which opened its door for the first time in 1999. Growing slowly but steadily, it now occupies the whole building at Dělnická 24 in Holešovice, a former working-class district. The genius loci of this area adds extra value to the whole experience',
+            'description' => 'The hotel aims to be Prague\'s most charming little hotel: its nine romantic suites are on the top floor of a wonderful Rococo palace built in 1786, just next to Charles Bridge and the Baroque masterpiece of the Church of Saint Nicolas. Perfect for hopeless romantics.',
             'wifi' =>	 false,
             'opening_hours' =>	'00:00 - 24:00',	
             'telephone' =>	 '+420 731 452 791', 
