@@ -29,8 +29,12 @@
   }
 
  .right-half {
+<<<<<<< HEAD
+    background-image: url('../img/kız.jpg');
+=======
     background-image: url('../img/girl.jpg');
     position: absolute;
+>>>>>>> fbe54c663ba6c1661a435ba9742a77a1fbbacb31
     background-size: cover;
     right: 0px;
     width: 50%;
