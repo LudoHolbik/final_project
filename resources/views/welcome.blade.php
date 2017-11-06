@@ -9,17 +9,11 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/style.css">
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+
 
             .full-height {
                 height: 100vh;
@@ -41,10 +35,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
             }
@@ -59,9 +49,6 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
@@ -78,17 +65,36 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+<section class="container">
+  <div class="left-half">
+      <img class="logo" src="img/logo.png"alt="urban_explorer">
+          <div class="form-wrapper">
+
+             <form action="" method="post">
+                      <label for="username">E-mail:</label>
+                      <input type="email" name="email" id="email">
+                      <br>
+                      <label for="password">Password:</label>
+                      <input type="password" name="password" id="password">
+                      <br>
+                      <button id="btn">Submit</button>
+                      <br>
+                      <a href="#">Forgot Your Password?</a>
+
+                 </form>
+          </div>
+
+ </div>
+     <div class="right-half">
+          <div class="text">
+                  <h1>Welcome to Urban Explorer</h1>
+                  <h2>Sign-in to begin your journey!</h2>
+              </div>
+     </div>
+</section>
+
+
             </div>
         </div>
     </body>
