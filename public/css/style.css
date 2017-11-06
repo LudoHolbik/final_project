@@ -29,7 +29,7 @@
   }
 
  .right-half {
-    background-image: url('img/kız.jpg');
+    background-image: url('../img/girl.jpg');
     position: absolute;
     background-size: cover;
     right: 0px;
