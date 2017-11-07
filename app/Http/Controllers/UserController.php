@@ -18,4 +18,15 @@ class UserController extends Controller
           return view ('home', ['user' => $user]);
 
      }
+
+     public function updateUser() {
+    $request = request();
+     $id = Auth::User() -> id;
+    $user = User::where('id', $id)->first();
+    $user -> name  = $request->input('edit_name');
+    $user -> email = $request->input('edit_email');
+    $user-> save();
+    return redirect()->action('UserController@user_info');
+    //return view('home' ['']);
+     }
 }

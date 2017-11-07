@@ -22,7 +22,7 @@
             }
 
             .flex-center {
-               
+
                 display: flex;
                 justify-content: center;
             }
