@@ -44,7 +44,11 @@ class placesController extends Controller
         return $view;
     }
 
-   
-   
+    public static function newPlace() {
+         return view('create_place');
+    }
+
+
+
 
 }
