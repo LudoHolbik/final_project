@@ -26,3 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@user_info');
 
 Route::post('/home', 'UserController@updateUser')->name('update');
+
+Route::get('/places', 'HomeController@places');
+
