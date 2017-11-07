@@ -44,6 +44,8 @@
          </div>
        </div>
      </div>
+<!--end of modal -->
+
           <br>
           <br>
           <a href="/place" class="btn btn-primary">See Places</a>
