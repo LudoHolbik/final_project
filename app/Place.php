@@ -10,4 +10,6 @@ class Place extends Model
     protected $guarded = [
         'id'
     ];
+
+    protected $table = 'places';
 }
