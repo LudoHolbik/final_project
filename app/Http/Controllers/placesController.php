@@ -4,10 +4,56 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Place;
+use App\Type;
 
-class placesController extends Controller
+class PlacesController extends Controller
 {
-    //
+    public function index(){
+        return Place::all();
+    }
+
+    public function map(){
+        $places = Place::all();
+        $types = Type::all();
+
+
+        $placesJSON = [];
+        foreach($places as $place){
+            $placesJSON[] = (object)[
+                "id" => $place->id,
+                "lat" => $place->gps_lat,
+                "lng" => $place->gps_lgt,
+                "name" => $place->name
+            ];
+        }
+
+        $placesJSON = json_encode($placesJSON);
+        return view ('places.map', ['places' => $places, 'types' => $types, 'placesJSON' => $placesJSON]);
+    }
+
+    public function mapFilter(Request $request){
+        $types = $request->types;
+        if($types == null) $types = [];
+
+        $places = Place::whereIn('type_id', $types)->get();
+
+        $placesJSON = [];
+
+        if($places != null){
+            foreach($places as $place){
+                $placesJSON[] = (object)[
+                    "id" => $place->id,
+                    "lat" => $place->gps_lat,
+                    "lng" => $place->gps_lgt,
+                    "name" => $place->name
+                ];
+            }
+        }
+        
+
+        $placesJSON = json_encode($placesJSON);
+        return $placesJSON;
+    }
 
     public function places_view() {
         $user_id = Auth::User() -> id;

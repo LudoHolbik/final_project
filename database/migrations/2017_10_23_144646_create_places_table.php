@@ -23,8 +23,8 @@ class CreatePlacesTable extends Migration
             $table->string('telephone')->nullable();
             $table->boolean('wifi')->nullable();
             $table->string('opening_hours')->nullable();
-            $table->float('gps_lat')->nullable();
-            $table->float('gps_lgt')->nullable();
+            $table->float('gps_lat', 8, 6)->nullable();
+            $table->float('gps_lgt', 8, 6)->nullable();
         });
     }
 
