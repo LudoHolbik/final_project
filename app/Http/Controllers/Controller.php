@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Place;
 
 class Controller extends BaseController
 {
@@ -13,6 +14,9 @@ class Controller extends BaseController
 
     public function places()
     {
-        return view('places');
+        $place= view('places');
+        $places=Place::get();
+        $place->places=$places;
+        return $place;
     }
 }
