@@ -62,10 +62,9 @@ class PlacesController extends Controller
 
     }
 
-
     public function Best_Views_Select()
     {
-        $places = Place::where('type', 'Best_Views')->get();
+        $places = Place::where('type_id', 1)->get();
         $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
         $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
         dd($places);
@@ -74,7 +73,7 @@ class PlacesController extends Controller
 
     public function Summer_Hangouts_Select()
     {
-        $places = Place::where('type', 'Outdoor_&_Summer_Hangouts')->get();
+        $places = Place::where('type_id', 2)->get();
         $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
         $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
         dd($places);
@@ -83,15 +82,38 @@ class PlacesController extends Controller
 
     public function The_Best_Parks_Select()
     {
-        $places = Place::where('type', 'The_Best_Parks')->get();
+        $places = Place::where('type_id', 3)->get();
         $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
         $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
         dd($places);
         return $view;
     }
 
-    public static function newPlace() {
-         return view('create_place');
+    public function Cinemas()
+    {
+        $places = Place::where('type_id', 4)->get();
+        $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
+        $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
+        dd($places);
+        return $view;
+    }
+
+    public function Art_Galleries()
+    {
+        $places = Place::where('type_id', 5)->get();
+        $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
+        $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
+        dd($places);
+        return $view;
+    }
+
+    public function Cultural_Centres()
+    {
+        $places = Place::where('type_id', 6)->get();
+        $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
+        $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
+        dd($places);
+        return $view;
     }
 
 
