@@ -37,6 +37,33 @@
                <br>
           <label for="opening_hours">Opening_hours</label>
                <br>
-          <input type="text" name="opening_hours" value="">
+          <input type="checkbox" name="monday" value="Monday">Monday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+          <input type="checkbox" name="monday" value="Monday">Tuesday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+          <input type="checkbox" name="monday" value="Monday">Wednesday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+          <input type="checkbox" name="monday" value="Monday">Thursday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+           <input type="checkbox" name="monday" value="Monday">Friday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+          <input type="checkbox" name="monday" value="Monday">Saturday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
+          <input type="checkbox" name="monday" value="Monday">Sunday
+          Open<input id="time" type="time" name="opening_hours">
+          Close<input id="time" type="time" name="opening_hours">
+               <br>
      </form>
 @endsection
