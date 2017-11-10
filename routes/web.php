@@ -24,14 +24,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'UserController@user_info');
+Route::get('/home', 'UserController@user_info')->name('home');
 
 Route::post('/home', 'UserController@updateUser')->name('update');
 
+Route::get('/new_place' ,  'PlacesController@newPlace');
+Route::post('/new_place', 'PlacesController@CreatePlace' );
 
-Route::get('/places', 'PlacesController@index');
+
+Route::get('/places', 'PlacesController@index')->name('places');
 
 Route::get('/places/map', 'PlacesController@map');
+
 Route::post('/places/map/filter', 'PlacesController@mapFilter');
-
-

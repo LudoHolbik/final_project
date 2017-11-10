@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\facades\schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Input;
 use App\User;
+
 
 class UserController extends Controller
 {
@@ -21,12 +23,18 @@ class UserController extends Controller
 
      public function updateUser() {
     $request = request();
-     $id = Auth::User() -> id;
+    $id = Auth::User() -> id;
     $user = User::where('id', $id)->first();
     $user -> name  = $request->input('edit_name');
     $user -> email = $request->input('edit_email');
-    $user-> save();
-    return redirect()->action('UserController@user_info');
-    //return view('home' ['']);
+
+    if (Input::hasFile('file')) {
+
+         $picture = Input::file('file');
+         $picture->move(public_path('img') ,$picture->getClientOriginalName());
+         $user -> img = $picture->getClientOriginalName();
      }
+     $user-> save();
+     return redirect()->action('UserController@user_info');
+}
 }

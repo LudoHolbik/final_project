@@ -9,13 +9,14 @@ use App\Type;
 class PlacesController extends Controller
 {
     public function index(){
-        return Place::all();
+         $places = Place::all();
+          return view('places', ['places'=> $places]);
+
     }
 
     public function map(){
         $places = Place::all();
         $types = Type::all();
-
 
         $placesJSON = [];
         foreach($places as $place){
@@ -49,7 +50,7 @@ class PlacesController extends Controller
                 ];
             }
         }
-        
+
 
         $placesJSON = json_encode($placesJSON);
         return $placesJSON;
@@ -61,7 +62,6 @@ class PlacesController extends Controller
          return view ('home', ['user' => $user]);
 
     }
-
 
     public function Best_Views_Select()
     {
@@ -92,6 +92,21 @@ class PlacesController extends Controller
 
     public static function newPlace() {
          return view('create_place');
+    }
+
+    public static function CreatePlace() {
+        $request = request();
+         $place = new Place;
+         $place -> name = $request['name'];
+         $place -> type_id = $request['type'];
+         $place -> address  = $request['address'];
+         $place -> description = $request['description'];
+         $place -> telephone = $request['telephone'];
+         $place -> wifi = $request['wi-fi'];
+         $place -> description = $request['description'];
+         $place -> opening_hours = $request['opening_hours'];
+         $place->save();
+         return redirect() -> route('places');
     }
 
 

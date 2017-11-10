@@ -10,6 +10,11 @@
     @endif
     You are logged in!
 </div>
+<div class="image">
+          @if( Auth::user() -> img !== null)
+               <img style="width: 200px ; height:200px" src="../img/{{$user -> img }}" alt="profile picture">
+          @endif
+</div>
 <div class="user_info">
           <h1>{{ $user -> name }}</h1>
           <p>{{ $user -> email }}</p>
@@ -24,7 +29,7 @@
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
        <div class="modal-dialog" role="document">
          <div class="modal-content">
-              <form class="" action="" method="post">
+              <form class="" action="" method="post" enctype="multipart/form-data">
                    {{ csrf_field() }}
            <div class="modal-header">
              <h5 class="modal-title" id="exampleModalLabel">Name</h5>
@@ -36,6 +41,8 @@
            <div class="modal-body">
              <input type="text" name="edit_email" value="{{ $user -> email }}">
            </div>
+           <label for="file">Upload picture</label>
+           <input type="file" name="file" value="">
            <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
              <button type="submit" class="btn btn-primary">Save changes</button>
@@ -48,7 +55,7 @@
 
           <br>
           <br>
-          <a href="/place" class="btn btn-primary">See Places</a>
+          <a href="/places" class="btn btn-primary">See Places</a>
 </div>
 <div class="wish_visit">
 
