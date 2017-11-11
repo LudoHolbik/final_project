@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Place;
 use App\Type;
+use Illuminate\Support\Facades\Input;
+use Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\facades\schema;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+
 
 class PlacesController extends Controller
 {
     public function index(){
          $places = Place::all();
           return view('places', ['places'=> $places]);
-
     }
 
     public function map(){
@@ -60,7 +67,6 @@ class PlacesController extends Controller
         $user_id = Auth::User() -> id;
         $user = User::where('id', $user_id)->first();
          return view ('home', ['user' => $user]);
-
     }
 
     public function Best_Views_Select()
@@ -95,7 +101,7 @@ class PlacesController extends Controller
     }
 
     public static function CreatePlace() {
-        $request = request();
+         $request = request();
          $place = new Place;
          $place -> name = $request['name'];
          $place -> type_id = $request['type'];
@@ -105,11 +111,16 @@ class PlacesController extends Controller
          $place -> wifi = $request['wi-fi'];
          $place -> description = $request['description'];
          $place -> opening_hours = $request['opening_hours'];
+
+         if (Input::hasFile('file')) {
+
+              $image = Input::file('file');
+              $image->move(public_path('img') ,$image->getClientOriginalName());
+              $place -> img = $image->getClientOriginalName();
+
+          }
          $place->save();
-         return redirect() -> route('places');
+         return redirect()->action('PlacesController@index');
+         //return redirect() -> route('places');
     }
-
-
-
-
 }

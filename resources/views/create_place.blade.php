@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-     <form class="" action="" method="post">
+     <form class="" action="" method="post" enctype="multipart/form-data">
            {{ csrf_field() }}
           <label for="name">Name</label>
                <br>
@@ -39,10 +39,9 @@
           <label for="opening_hours">Opening_hours</label>
                <br>
           <input type="text" name="opening_hours" value="">
-          <br>
-     <!--     <input type="checkbox" name="monday" value="Monday">Monday
-          Open<input id="time" type="time" name="opening_hours">
-          Close<input id="time" type="time" name="opening_hours"> -->
+               <br>
+          <label for="file">Upload picture</label>
+          <input type="file" name="file" value="">
                <br>
           <input type="submit" name="" value="Create">
      </form>

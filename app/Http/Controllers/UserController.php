@@ -36,5 +36,5 @@ class UserController extends Controller
      }
      $user-> save();
      return redirect()->action('UserController@user_info');
-}
+     }
 }

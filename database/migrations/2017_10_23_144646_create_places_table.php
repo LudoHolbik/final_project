@@ -25,10 +25,11 @@ class CreatePlacesTable extends Migration
             $table->string('opening_hours')->nullable();
             $table->float('gps_lat', 8, 6)->nullable();
             $table->float('gps_lgt', 8, 6)->nullable();
+            $table->string('img')->nullable();
         });
     }
 
-   
+
 
     /**
      * Reverse the migrations.
