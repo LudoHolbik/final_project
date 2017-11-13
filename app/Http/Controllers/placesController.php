@@ -16,11 +16,7 @@ use App\User;
 
 class PlacesController extends Controller
 {
-    public function index(){
-         $places = Place::all();
-          return view('places', ['places'=> $places]);
-    }
-
+    
     public function map(){
         $places = Place::all();
         $types = Type::all();
@@ -69,36 +65,22 @@ class PlacesController extends Controller
          return view ('home', ['user' => $user]);
     }
 
+    public function index(){
+        $places = Place::all();
+         return view('places', ['places'=> $places]);
+
+   }
+
     public function Best_Views_Select()
     {
-        $places = Place::where('type', 'Best_Views')->get();
+        $places = Place::where('type_id', 1)->get();
         $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
         $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
         dd($places);
         return $view;
     }
 
-    public function Summer_Hangouts_Select()
-    {
-        $places = Place::where('type', 'Outdoor_&_Summer_Hangouts')->get();
-        $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
-        $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
-        dd($places);
-        return $view;
-    }
-
-    public function The_Best_Parks_Select()
-    {
-        $places = Place::where('type', 'The_Best_Parks')->get();
-        $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
-        $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
-        dd($places);
-        return $view;
-    }
-
-    public static function newPlace() {
-         return view('create_place');
-    }
+  
 
     public static function CreatePlace() {
          $request = request();
