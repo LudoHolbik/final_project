@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Places</title>
     <link rel="stylesheet" href="css/places.css">
-    <link rel="stylesheet" href="js/places.js">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
 </head>
@@ -21,30 +20,35 @@
         </div>
 
         <section class="tabs">
+        <form id="tabs" action="" method="post">
 
-            <input id="tab1" type="radio" name="tabs" checked>
-            <label for="tab1">BEST VIEWS</label>
+            <input id="tab0" type="radio" name="tabs" class="checked" checked>
+            <label for="tab0">All Places</label>
+    
+            <input id="tab1" type="radio" name="tabs">
+            <label for="tab1">Best Views</label>
 
             <input id="tab2" type="radio" name="tabs">
-            <label for="tab2">OUTDOOR & SUMMER HANGOUTS</label>
+            <label for="tab2">Outdoors &amp; Summer hangouts</label>
 
             <input id="tab3" type="radio" name="tabs">
-            <label for="tab3">HOTELS & HOSTELS</label>
+            <label for="tab3">Hotels &amp; Hostels</label>
 
             <input id="tab4" type="radio" name="tabs">
-            <label for="tab4">ART GALERIES</label>
+            <label for="tab4">Art galeries</label>
 
             <input id="tab5" type="radio" name="tabs">
-            <label for="tab5">CULTURAL CENTRES</label>
+            <label for="tab5">Cultural centres</label>
 
             <input id="tab6" type="radio" name="tabs">
-            <label for="tab6">CINEMAS</label>
+            <label for="tab6">Cinemas</label>
 
+        </form>
         </section>
-        
-    <div class="wrapper">
-   
 
+
+    <div class="wrapper d-flex flex-row flex-wrap">
+   
         @foreach($places as $place)
 
             <div class=" card [ is-collapsed ] ">
@@ -78,5 +82,20 @@
             </div>
             @endforeach
     </div>
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="js/places.js"></script>
+<script src="js/ludo.js"></script>
+
+
+
+
+
+
 </body>
 </html>
