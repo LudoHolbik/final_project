@@ -15,7 +15,7 @@
             <div class="row">
                     <img class="logo "src="img/logo.png" alt="">
                 <div class="col-8 header">
-                
+
                 </div>
             </div>
         </div>
@@ -41,19 +41,19 @@
             <label for="tab6">CINEMAS</label>
 
         </section>
-        
+
     <div class="wrapper">
-   
+
 
         @foreach($places as $place)
 
             <div class=" card [ is-collapsed ] ">
-               <img class="imaj" src="" alt="">  
+               <img class="imaj" src="" alt="">
                 <div class="card__inner [ js-expander ]">
-                    
+
                     <span> {{$place['name']}}</span>
                     <i class="fa fa-folder-o"></i>
-                    
+
                 </div>
                 <div class="card__expander">
                     <i class="fa fa-close [ js-collapser ]"></i>
@@ -62,10 +62,10 @@
                                 <div class="tab">{{$place['type']}}</div>
                                 <span>{{$place['opening_hours']}}</span>
                                 <span>{{$place['address']}}</span>
-                                
+
                             <div class="side">
                                 <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span>    
+                                <span><a href="/places/detail/{{ $place -> id }}">Show more</a></span>
                             </div>
                         </div>
                             <div class="desc">
@@ -73,7 +73,7 @@
                                 <p>{{$place['description']}} </p>
                             </div>
                     </div>
-                    
+
                 </div>
             </div>
             @endforeach

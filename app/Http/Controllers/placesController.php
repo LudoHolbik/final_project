@@ -123,4 +123,10 @@ class PlacesController extends Controller
          return redirect()->action('PlacesController@index');
          //return redirect() -> route('places');
     }
+
+    public static function placeDetail($id) {
+         $place = Place::where('id', $id)->first();
+         return view('places.detail', ['place' => $place]);
+    }
+
 }

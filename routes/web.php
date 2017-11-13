@@ -37,3 +37,7 @@ Route::get('/places', 'PlacesController@index')->name('places');
 Route::get('/places/map', 'PlacesController@map');
 
 Route::post('/places/map/filter', 'PlacesController@mapFilter');
+
+Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
+
+//Route::get('/places/detail/{id}', 'PlacesController@mapPlace');
