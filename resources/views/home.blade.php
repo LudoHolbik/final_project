@@ -7,10 +7,10 @@
     @if (session('status'))
         <div class="alert alert-success">
           {{ session('status') }}
-
+ You are logged in!
         </div>
     @endif
-    You are logged in!
+
 </div>
 <div class="image">
 

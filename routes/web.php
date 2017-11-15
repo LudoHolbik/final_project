@@ -22,7 +22,7 @@ Route::get('/create','testController@create');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@user_info')->name('home');
 
 
@@ -54,3 +54,10 @@ Route::get('/places/7', 'PlacesController@Cinemas');
 //URL for the whole map
 Route::get('/places/map', 'PlacesController@map');
 Route::post('/places/map/filter', 'PlacesController@mapFilter');
+
+Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
+
+//Route::get('/places/detail/{id}', 'PlacesController@mapPlace');
+
+Route::post('/places/detail/{id}', 'PlacesController@createReview');
+//Route::get('/places/detail/{id}' , 'PlacesController@getReview');
