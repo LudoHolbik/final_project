@@ -26,6 +26,7 @@ class CreatePlacesTable extends Migration
             $table->float('gps_lat', 8, 6)->nullable();
             $table->float('gps_lgt', 8, 6)->nullable();
             $table->string('img')->nullable();
+            $table->integer('likes')->default(0);
         });
     }
 

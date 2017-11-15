@@ -16,7 +16,7 @@ use App\User;
 
 class PlacesController extends Controller
 {
-    
+
     public function map(){
         $places = Place::all();
         $types = Type::all();
@@ -65,12 +65,19 @@ class PlacesController extends Controller
          return view ('home', ['user' => $user]);
     }
 
-    public function index(){
-        $places = Place::all();
-         return view('places', ['places'=> $places]);
+    public function index($id = null){
+        if ($id == null) {
+        $places = Place::all();            
+        return view('places', ['places'=> $places]);
+        }else{
+            $places=Place::where('type_id', $id)->get();
+            return view('places', ['places'=> $places]);
+        }
 
    }
 
+
+   /*
     public function Best_Views_Select()
     {
         $places = Place::where('type_id', 1)->get();
@@ -79,7 +86,7 @@ class PlacesController extends Controller
         dd($places);
         return $view;
     }
-
+*/
   
 
     public static function CreatePlace() {
@@ -100,7 +107,8 @@ class PlacesController extends Controller
               $image->move(public_path('img') ,$image->getClientOriginalName());
               $place -> img = $image->getClientOriginalName();
 
-          }
+        }
+        
          $place->save();
          return redirect()->action('PlacesController@index');
          //return redirect() -> route('places');

@@ -1,4 +1,16 @@
+$(function(){
+
+
+
 var $cell = $('.card');
+
+
+// bad selector somewhere??
+
+// toggle na body - preklik na inu kartu
+
+
+// karta by mala mat position: relative a sedivy expanded box ma byt absolute
 
 //open and close card when clicked on card
 $cell.find('.js-expander').click(function() {
@@ -28,5 +40,7 @@ $cell.find('.js-collapser').click(function() {
 
   $thisCell.removeClass('is-expanded').addClass('is-collapsed');
   $cell.not($thisCell).removeClass('is-inactive');
+
+});
 
 });
