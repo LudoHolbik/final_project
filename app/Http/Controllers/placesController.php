@@ -12,12 +12,16 @@ use Illuminate\Support\facades\schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
+use App\Review;
 
 
 class PlacesController extends Controller
 {
 
     public function map(){
+         if(Auth::user() == null) {
+            return  redirect('/');
+        } else {
         $places = Place::all();
         $types = Type::all();
 
@@ -34,7 +38,7 @@ class PlacesController extends Controller
         $placesJSON = json_encode($placesJSON);
         return view ('places.map', ['places' => $places, 'types' => $types, 'placesJSON' => $placesJSON]);
     }
-
+}
     public function mapFilter(Request $request){
         $types = $request->types;
         if($types == null) $types = [];
@@ -63,8 +67,9 @@ class PlacesController extends Controller
         $user_id = Auth::User() -> id;
         $user = User::where('id', $user_id)->first();
          return view ('home', ['user' => $user]);
-    }
 
+    }
+/*
     public function index($id = null){
         if ($id == null) {
         $places = Place::all();            
@@ -74,6 +79,15 @@ class PlacesController extends Controller
             return view('places', ['places'=> $places]);
         }
 
+*/
+
+    public function index(){
+         if(Auth::user() == null) {
+            return  redirect('/');
+        } else {
+        $places = Place::all();
+         return view('places', ['places'=> $places]);
+          }
    }
 
 
@@ -87,7 +101,16 @@ class PlacesController extends Controller
         return $view;
     }
 */
-  
+
+    public static function newPlace() {
+         if(Auth::user() == null) {
+            return  redirect('/');
+        } else {
+         return view('create_place');
+          }
+    }
+
+
 
     public static function CreatePlace() {
          $request = request();
@@ -113,4 +136,39 @@ class PlacesController extends Controller
          return redirect()->action('PlacesController@index');
          //return redirect() -> route('places');
     }
+
+    public static function placeDetail($id) {
+         if(Auth::user() == null) {
+            return  redirect('/');
+        } else {
+         $place = Place::where('id', $id)->first();
+         $review = Review::where('place_id', $id)->get();
+         return view('places.detail', ['places' => $place], ['reviews' => $review]);
+    }
+}
+
+    public static function createReview() {
+         $request = request();
+         $review = new Review;
+         $review ->review = $request['review'];
+         $review ->user_id = $request['user_id'];
+         $review ->user_name = $request['user_name'];
+         $review ->rating = $request['rating'];
+         $review ->place_id = $request['place_id'];
+         $review->save();
+         return redirect()->action('PlacesController@placeDetail', ['id'=>$request['place_id']]);
+    }
+/*
+    public static function placeDetail($id) {
+         $place = Place::where('id', $id)->first();
+         $review = Review::all();
+
+         $view = view('places.detail');
+         $view->places = $place;
+         $view->reviews = $review;
+         return $view;
+         return redirect()->action('PlacesController@placeDetail');
+
+    }
+*/
 }
