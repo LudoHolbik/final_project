@@ -339,3 +339,69 @@
       padding: 1em;
 
   }
+
+  @keyframes neon {
+  	  0% {
+  	    text-shadow: 0 0 10px #fff,
+  	               0 0 15px  #fff,
+  	               0 0 25px  #fff,
+  	               0 0 40px  #FF9900,
+  	               0 0 70px  #FF9900,
+  	               0 0 90px  #FF9900,
+  	               0 0 90px  #FF9900;
+  	  }
+  	  100% {
+  	    text-shadow: 0 0 5px #fff,
+  	               0 0 10px #fff,
+  	               0 0 15px #fff,
+  	               0 0 20px #FF9900,
+  	               0 0 35px #FF9900,
+  	               0 0 40px #FF9900,
+  	               0 0 50px #FF9900;
+  	  }
+ }
+
+
+
+ .wrap {
+ 	position: absolute;
+ 	top: 10%;
+ 	left: 90%;
+ 	margin-top: 0px;
+ 	margin-left: 0px;
+ 	text-align: center;
+ }
+
+ a {
+ 	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+ 	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+ 	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+ 	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+ 	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+ 	display: block;
+ 	margin: 20px auto;
+ 	max-width: 180px;
+ 	text-decoration: none;
+ 	border-radius: 4px;
+ 	padding: 20px 30px;
+ }
+
+ a.button {
+ 	color: rgba(30, 22, 54, 0.6);
+ 	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+ }
+
+ a.button:hover {
+ 	color: rgba(255, 255, 255, 0.85);
+ 	box-shadow: #1abc9c 0 0px 0px 40px inset;
+ }
+
+ a.button2 {
+ 	color: rgba(30, 22, 54, 0.6);
+ 	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+ }
+
+ a.button2:hover {
+ 	color: rgba(255, 255, 255, 0.85);
+ 	box-shadow: #1abc9c 0 80px 0px 2px inset;
+ }

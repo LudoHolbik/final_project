@@ -13,6 +13,8 @@
     <!-- Styles -->
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--added -->
+
 
 </head>
 <body>
