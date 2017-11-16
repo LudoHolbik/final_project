@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
     <title>Places</title>
-    <link rel="stylesheet" href="css/places.css">
-
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="/css/places.css">
+
 </head>
 <body>
 
@@ -18,7 +19,7 @@
 
         <div class="container">
             <div class="row">
-                    <img class="logo "src="img/logo.png" alt="">
+                    <img class="logo "src="/img/logo.png" alt="">
                 <div class="col-8 header">
 
                 </div>
@@ -36,9 +37,31 @@
         <section class="tabs">
         <form id="tabs" action="" method="post">
 
+
+            <!--
             <input id="tab0" type="radio" name="tabs" class="checked" checked>
             <label for="tab0">All Places</label>
+            -->
 
+
+            <a href="{{ route('places') }}">All places</a>
+
+            <a href="{{ route('places', ['id' => 1]) }}">Best Views</a>
+
+            <a href="{{ route('places', ['id' => 2]) }}">Outdoors &amp; Summer hangouts</a>
+
+            <a href="{{ route('places', ['id' => 3]) }}">Hotels &amp; Hostels</a>
+
+            <a href="{{ route('places', ['id' => 4]) }}">Art galeries</a>
+
+            <a href="{{ route('places', ['id' => 5]) }}">Cultural centres</a>
+
+            <a href="{{ route('places', ['id' => 6]) }}">Cinemas</a>
+
+            <a href="{{ route('places', ['id' => 7]) }}">??</a>
+            
+
+<!--
             <input id="tab1" type="radio" name="tabs">
             <label for="tab1">Best Views</label>
 
@@ -56,9 +79,19 @@
 
             <input id="tab6" type="radio" name="tabs">
             <label for="tab6">Cinemas</label>
+-->
 
         </form>
         </section>
+
+<!--
+    position:absolute
+        
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start
+-->
 
 
     <div class="wrapper d-flex flex-row flex-wrap">
@@ -74,7 +107,7 @@
 
                 </div>
                 <div class="card__expander">
-                    <i class="fa fa-close [ js-collapser ]"></i>
+                    <i class="fa fa-close js-collapser"></i>
                     <div class="box">
                         <div class="left">
                                 <div class="tab">{{$place['type']}}</div>
@@ -82,6 +115,17 @@
                                 <span>{{$place['address']}}</span>
 
                             <div class="side">
+                                <span><a href="">Show in map</a> </span>
+                                <span><a href="">Show more<</a></span> 
+                                                              
+                                
+                                <button class="like" data-id="{{$place['id']}}">LIKE</button>  
+                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
+
+                                <div id="likes"></div>                                                                   
+                                
+                              
+
 
                                 <span><a href="/places/detail/{{ $place -> id }}">Show detail</a></span>
                             </div>
@@ -98,18 +142,78 @@
     </div>
 
 
-    <script
+<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<script src="js/places.js"></script>
-<script src="js/ludo.js"></script>
+<script src="/js/places.js"></script> 
 
+<script>
+    
+    /*-----------
+    LIKE FUNCTION
+    ------------*/
 
+$(function(){
+    $('.like').click(function()
+        {                                                   
+            // menit text na liked  
+            if ($(this).text() === 'LIKE'){
+                $(this).text('UNDO');
+            }else{
+                ($(this).text() === 'UNDO');
+                $(this).text('LIKE');
+            }
+            
+            $.ajax({
+            "url" : "/like",
+            "type" : "get",
+            "data" : {
+                "id": $('.like').data("id")
+            }
+        })
+        .done(function(data) {
+            alert( "success" );
+        })
+    });   
+});
+        // var X = TRUE
+        //prebehne AJAX posli na controller
+    
+    /*------------
+    DISLIKE FUNCTION
+    -------------*/        
+  
+$(function(){
+    $('.dislike').click(function()
+        {                                                   
+            // menit text na liked  
+            if ($(this).text() === 'DISLIKE'){
+                $(this).text('UNDO');
+            }else{
+                ($(this).text() === 'UNDO');
+                $(this).text('DISLIKE');
+            }
+            
+            $.ajax({
+            "url" : "/dislike",
+            "type" : "get",
+            "data" : {
+                "id": $('.dislike').data("id")
+            }
+        })
+        .done(function(data) {
+            alert( "success" );
+        })
+    });
 
-
-
+});
+        // var X = FALSE
+        // prebehne AJAX posli na controller
+                                                    
+                                    
+</script>
 
 </body>
 </html>
