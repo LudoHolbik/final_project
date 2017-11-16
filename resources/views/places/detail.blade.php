@@ -3,6 +3,7 @@
 @section('content')
 <div class="info" style="width: 50%; background-color:white" >
      <h1>{{ $places -> name }}</h1>
+     <p>{{ $places -> id }}</p>
           <p>{{ $places-> address }}</p>
           <p>{{ $places -> description }}</p>
 
@@ -33,9 +34,15 @@
      <p>{{ $review -> review }}</p>
      <p>{{ $review -> rating}}</p>
      <p>Created at {{ $review -> created_at }}  by {{ $review -> user_name}}</p>
-</div>
+
+     @if(Auth::user()->id == $review->user_id)
+          <button type="button" name="button"><a href="/places/detail/{{$review->id}}/delete">Delete</a> </button>
+     @endif
+     </div>
 @endforeach
 @endif
+
+
 </div>
 
 <div class="create_review">
@@ -80,8 +87,9 @@
       </div>
       <input type="hidden" name="user_id" value="{{ Auth::user() -> id }}">
        <input type="hidden" name="user_name" value="{{ Auth::user() -> name }}">
-       <input type="hidden" name="place_id" value="{{ $places -> id }}">
+       <input type="hidden" name="place_id" value="{{ $places->id }}">
        <input type="submit" name="" value="Submit">
+
      </form>
 </div>
 

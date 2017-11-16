@@ -61,3 +61,5 @@ Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
 
 Route::post('/places/detail/{id}', 'PlacesController@createReview');
 //Route::get('/places/detail/{id}' , 'PlacesController@getReview');
+
+Route::get('/places/detail/{id}/delete', 'PlacesController@deleteReview');

@@ -143,17 +143,12 @@ class PlacesController extends Controller
          $review->save();
          return redirect()->action('PlacesController@placeDetail', ['id'=>$request['place_id']]);
     }
-/*
-    public static function placeDetail($id) {
-         $place = Place::where('id', $id)->first();
-         $review = Review::all();
 
-         $view = view('places.detail');
-         $view->places = $place;
-         $view->reviews = $review;
-         return $view;
-         return redirect()->action('PlacesController@placeDetail');
+    public static function deleteReview($id) {
+         $review = Review::find($id);
+         $place_id = $review->place_id;
+         $review->delete();
+         return redirect()->action('PlacesController@placeDetail',['id'=>$place_id]);
 
-    }
-*/
+}
 }
