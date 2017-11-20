@@ -38,9 +38,9 @@ Route::get('/places', 'PlacesController@index')->name('places');
 
 // URLs for indivdidual categories of places
 
-/*
-Route::get('/places/1', 'PlacesController@Best_Views_Select');
 
+Route::get('/places/{id}', 'PlacesController@Best_Views_Select');
+/*
 Route::get('/places/2', 'PlacesController@Summer_Hangouts_Select');
 
 Route::get('/places/3', 'PlacesController@The_Best_Parks_Select');
@@ -58,22 +58,21 @@ Route::get('/places/7', 'PlacesController@Cinemas');
 Route::get('/places/map', 'PlacesController@map');
 Route::post('/places/map/filter', 'PlacesController@mapFilter');
 
-<<<<<<< HEAD
+
 
 
 Route::get('/places/{id?}', 'PlacesController@index')->name('places');
 Route::get('/like','likeController@like');
 Route::get('/dislike','likeController@dislike');
-=======
+
 Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
 
 //Route::get('/places/detail/{id}', 'PlacesController@mapPlace');
 
 Route::post('/places/detail/{id}', 'PlacesController@createReview');
 //Route::get('/places/detail/{id}' , 'PlacesController@getReview');
-<<<<<<< HEAD
+
 
 Route::get('/places/detail/{id}/delete', 'PlacesController@deleteReview');
-=======
->>>>>>> b3b00ca18e38895946a3d92467a4d369254269c8
->>>>>>> e2d0f49530d55e3016630be0b468c4d647b9ad1b
+
+//Route::get('/places/detail/{id}', 'PlacesController@getReview');
