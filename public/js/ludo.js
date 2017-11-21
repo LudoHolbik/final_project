@@ -10,6 +10,7 @@ $("#tabs input").click(function() {
             "url" : "example.php",
             "type" : "post",
             "data" : {
+                
             "a" : "value"
             }
         })

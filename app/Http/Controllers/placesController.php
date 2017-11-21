@@ -73,7 +73,7 @@ class PlacesController extends Controller
          return view ('home', ['user' => $user]);
 
     }
-/*
+
     public function index($id = null){
         if ($id == null) {
         $places = Place::all();
@@ -83,7 +83,9 @@ class PlacesController extends Controller
             return view('places', ['places'=> $places]);
         }
 
-*/
+    }
+
+/*
 
     public function index(){
          if(Auth::user() == null) {
@@ -93,7 +95,7 @@ class PlacesController extends Controller
          return view('places', ['places'=> $places]);
           }
    }
-
+*/
 
 
     public function Best_Views_Select($id)
@@ -104,6 +106,7 @@ class PlacesController extends Controller
        // dd($places);
         return view('places', ['places'=>$places]);
    }
+
 
 
     public static function newPlace() {

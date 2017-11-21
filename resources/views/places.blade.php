@@ -40,10 +40,7 @@
         <form id="tabs" action="" method="post">
 
 
-            <!--
-            <input id="tab0" type="radio" name="tabs" class="checked" checked>
-            <label for="tab0">All Places</label>
-            -->
+       
 
 
             <a href="{{ route('places') }}">All places</a>
@@ -62,8 +59,7 @@
             <a href="{{ route('places', ['id' => 6]) }}">Cinemas</a>
 
             <a href="{{ route('places', ['id' => 7]) }}">??</a>
-
-
+            
         </form>
         </section>
 
@@ -98,6 +94,12 @@
                                 <span>{{$place['address']}}</span>
 
                             <div class="side">
+                                <span><a href="">Show in map</a> </span>
+                                <span><a href="">Show more<</a></span> 
+                                                              
+                                
+                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>  
+                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
 
 
                                 <button class="like" data-id="{{$place['id']}}">LIKE</button>
@@ -131,69 +133,55 @@
 <script src="/js/places.js"></script>
 
 <script>
+    
+/*-----------
+LIKE FUNCTION
+------------*/
 
-    /*-----------
-    LIKE FUNCTION
-    ------------*/
-
-$(function(){
-    $('.like').click(function()
-        {
-            // menit text na liked
-            if ($(this).text() === 'LIKE'){
-                $(this).text('UNDO');
-            }else{
-                ($(this).text() === 'UNDO');
-                $(this).text('LIKE');
-            }
-
-            $.ajax({
-            "url" : "/like",
-            "type" : "get",
-            "data" : {
-                "id": $('.like').data("id")
-            }
-        })
-        .done(function(data) {
-            alert( "success" );
-        })
+function likeHandler(id, button){
+    var likeButton = $(button);/*'.like[data-id='+id+']'); */
+    if (likeButton.html() === 'LIKE'){
+        likeButton.html("UNDO");
+    }else if(likeButton.html() === 'UNDO'){
+        likeButton.html('LIKE');
+    }
+            
+    $.ajax({
+        "url" : "/like",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
     });
-});
-        // var X = TRUE
-        //prebehne AJAX posli na controller
+}
 
-    /*------------
-    DISLIKE FUNCTION
-    -------------*/
+/*------------
+DISLIKE FUNCTION
+-------------*/        
 
-$(function(){
-    $('.dislike').click(function()
-        {
-            // menit text na liked
-            if ($(this).text() === 'DISLIKE'){
-                $(this).text('UNDO');
-            }else{
-                ($(this).text() === 'UNDO');
-                $(this).text('DISLIKE');
-            }
-
-            $.ajax({
-            "url" : "/dislike",
-            "type" : "get",
-            "data" : {
-                "id": $('.dislike').data("id")
-            }
-        })
-        .done(function(data) {
-            alert( "success" );
-        })
+function dislikeHandler(id, button){
+    var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if (dislikeButton.html() == 'DISLIKE'){
+        dislikeButton.html("UNDO");
+    }else if(dislikeButton.html() == 'UNDO'){
+        dislikeButton.html("DISLIKE");
+    }
+            
+    $.ajax({
+        "url" : "/dislike",
+        "type" : "get",
+        "data" : {
+            "id": id        
+        }
+    }).done(function(data) {
+        alert("success");
     });
+}
 
-});
-        // var X = FALSE
-        // prebehne AJAX posli na controller
-
-
+                                      
+                                    
 </script>
 
 </body>

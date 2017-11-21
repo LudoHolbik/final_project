@@ -15,6 +15,16 @@ var $cell = $('.card');
 //open and close card when clicked on card
 $cell.find('.js-expander').click(function() {
 
+        $.ajax({
+          "url" : "places.blade.php",
+          "type" : "get",
+          "data" : {
+              
+          "id" : $(this).attr("data-id")
+          }
+      })
+
+
   var $thisCell = $(this).closest('.card');
 
   if ($thisCell.hasClass('is-collapsed')) {
