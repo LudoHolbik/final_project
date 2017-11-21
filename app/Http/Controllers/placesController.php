@@ -18,6 +18,8 @@ use App\Review;
 class PlacesController extends Controller
 {
 
+// map controller
+
     public function map(){
          if(Auth::user() == null) {
             return  redirect('/');
@@ -63,6 +65,8 @@ class PlacesController extends Controller
         return $placesJSON;
     }
 
+// end of maps controller
+
     public function places_view() {
         $user_id = Auth::User() -> id;
         $user = User::where('id', $user_id)->first();
@@ -72,7 +76,7 @@ class PlacesController extends Controller
 /*
     public function index($id = null){
         if ($id == null) {
-        $places = Place::all();            
+        $places = Place::all();
         return view('places', ['places'=> $places]);
         }else{
             $places=Place::where('type_id', $id)->get();
@@ -91,16 +95,16 @@ class PlacesController extends Controller
    }
 
 
-   /*
-    public function Best_Views_Select()
+
+    public function Best_Views_Select($id)
     {
-        $places = Place::where('type_id', 1)->get();
+        $places = Place::where('type_id', $id)->get();
         $view = view('type_of_place'); // odkaz na blade file ktory sa zobrazi
         $view->places=$places; // v bladovem filu 'view' bude k dispozici data z variable $places a to pod menom places
-        dd($places);
-        return $view;
-    }
-*/
+       // dd($places);
+        return view('places', ['places'=>$places]);
+   }
+
 
     public static function newPlace() {
          if(Auth::user() == null) {
@@ -131,7 +135,7 @@ class PlacesController extends Controller
               $place -> img = $image->getClientOriginalName();
 
         }
-        
+
          $place->save();
          return redirect()->action('PlacesController@index');
          //return redirect() -> route('places');
@@ -142,10 +146,13 @@ class PlacesController extends Controller
             return  redirect('/');
         } else {
          $place = Place::where('id', $id)->first();
-         $review = Review::where('place_id', $id)->get();
-         return view('places.detail', ['places' => $place], ['reviews' => $review]);
+        // $review = Review::where('place_id', $id)->get();
+         return view('places.detail', ['places' => $place]//, ['reviews' => $review]
+    );
     }
 }
+
+// reviews controller
 
     public static function createReview() {
          $request = request();
@@ -165,5 +172,13 @@ class PlacesController extends Controller
          $review->delete();
          return redirect()->action('PlacesController@placeDetail',['id'=>$place_id]);
 
-}
+    }
+
+    public static function getReview($id) {
+         $review = Review::where('place_id' , $id)->get();
+
+         return view('places.reviews', ['reviews'=> $review]);
+    }
+
+// end of review controller
 }

@@ -38,9 +38,9 @@ Route::get('/places', 'PlacesController@index')->name('places');
 
 // URLs for indivdidual categories of places
 
-/*
-Route::get('/places/1', 'PlacesController@Best_Views_Select');
 
+Route::get('/places/{id}', 'PlacesController@Best_Views_Select');
+/*
 Route::get('/places/2', 'PlacesController@Summer_Hangouts_Select');
 
 Route::get('/places/3', 'PlacesController@The_Best_Parks_Select');
@@ -69,3 +69,4 @@ Route::post('/places/detail/{id}', 'PlacesController@createReview');
 
 Route::get('/places/detail/{id}/delete', 'PlacesController@deleteReview');
 
+//Route::get('/places/detail/{id}', 'PlacesController@getReview');

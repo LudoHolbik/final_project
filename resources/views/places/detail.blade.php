@@ -26,24 +26,13 @@
 
 </div>
 
-<div class="reviews" style="border: 1px solid black">
+<div id="show_review" class="reviews" style="border: 1px solid black">
 
-@if(!$reviews->isEmpty())
-@foreach($reviews as $review)
-<div class="review" style="border: 1px solid black">
-     <p>{{ $review -> review }}</p>
-     <p>{{ $review -> rating}}</p>
-     <p>Created at {{ $review -> created_at }}  by {{ $review -> user_name}}</p>
 
-     @if(Auth::user()->id == $review->user_id)
-          <button type="button" name="button"><a href="/places/detail/{{$review->id}}/delete">Delete</a> </button>
-     @endif
-     </div>
-@endforeach
-@endif
 
 
 </div>
+<button data-id="{{ $places -> id }}" id="get_review" type="button" name="get_review">See all reviews</button>
 
 <div class="create_review">
 
@@ -95,7 +84,16 @@
 
 
 <div id="map" style="width:600px; height:600px"></div>
+
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+
 <script>
+
+
     function initMap() {
 
         // create a map
@@ -111,7 +109,31 @@
             label: "Pivotéka illegal beer"
           });
 
-   }
+   };
+
+$(document).ready(function(){
+
+   $('#get_review').click(function(){
+
+          console.log('click');
+        $.ajax ({
+             'method': 'post',
+             'url': '/api/reviews/' + $('#get_review').data('id'),
+
+             'data': {
+                  'id': $('#get_review').data('id')
+             }
+
+        })
+        .done(function(data){
+                     $('#show_review').append(data);
+                     $('#get_review').hide();
+
+        })
+   });
+})
+
  </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
+
 @endsection
