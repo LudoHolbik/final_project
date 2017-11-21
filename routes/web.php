@@ -60,7 +60,12 @@ Route::post('/places/map/filter', 'PlacesController@mapFilter');
 Route::get('/places/{id?}', 'PlacesController@index')->name('places');
 Route::get('/like','likeController@like');
 Route::get('/dislike','likeController@dislike');
+
 Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
 //Route::get('/places/detail/{id}', 'PlacesController@mapPlace');
 Route::post('/places/detail/{id}', 'PlacesController@createReview');
 //Route::get('/places/detail/{id}' , 'PlacesController@getReview');
+
+
+Route::get('/places/detail/{id}/delete', 'PlacesController@deleteReview');
+
