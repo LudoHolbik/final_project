@@ -14,7 +14,7 @@
                             
                         <nav class="navbar navbar-toggleable-md">
                             <ul>
-                             <li class= "user"><a class="effect-box" href="#">Places</a></li>
+                             <li class= "user"><a class="effect-box" href="{{ route('places') }}">Places</a></li>
                              <li class= "user"><a class="effect-box" href="#">Map  View</a></li>
                              <li class= "user"><a class="effect-box" href="#">User Page</a></li>
                              <li class= "user"><a class="effect-box" href="#">Log Out</a></li>

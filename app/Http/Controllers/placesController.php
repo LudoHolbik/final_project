@@ -107,8 +107,6 @@ class PlacesController extends Controller
         return view('places', ['places'=>$places]);
    }
 
-
-
     public static function newPlace() {
          if(Auth::user() == null) {
             return  redirect('/');
@@ -117,19 +115,28 @@ class PlacesController extends Controller
           }
     }
 
-
-
     public static function CreatePlace() {
          $request = request();
+               $validatedData = $request->validate([
+                    'name'=>'required|max:255|unique:places,name',
+                    'address' => 'required|unique:places,address',
+                    'description' => 'required|min:10|max:255',
+                    'file' => 'image',
+                    'gps_lat' => 'nullable|min:4',
+                    'gps_lgt' => 'nullable|min:4',
+               ]);
+
          $place = new Place;
-         $place -> name = $request['name'];
+         $place -> name = $validatedData['name'];
          $place -> type_id = $request['type'];
-         $place -> address  = $request['address'];
-         $place -> description = $request['description'];
+         $place -> address  = $validatedData['address'];
+         $place -> description = $validatedData['description'];
          $place -> telephone = $request['telephone'];
          $place -> wifi = $request['wi-fi'];
-         $place -> description = $request['description'];
+         $place -> description = $validatedData['description'];
          $place -> opening_hours = $request['opening_hours'];
+         $place -> gps_lat = $validatedData['gps_lat'];
+         $place -> gps_lgt = $validatedData['gps_lgt'];
 
          if (Input::hasFile('file')) {
 
@@ -159,9 +166,17 @@ class PlacesController extends Controller
 
     public static function createReview() {
          $request = request();
+
+         $validatedData = $request->validate([
+              'rating'=>'required',
+              'review' => 'required|max:255',
+              'place_id' => 'unique:reviews,place_id'. auth()->user()->user_id,
+         ]);
+
+dd($validatedData);
          $review = new Review;
-         $review ->review = $request['review'];
-         $review ->user_id = $request['user_id'];
+         $review ->review = $validatedData['review'];
+         $review ->user_id = $validatedData['user_id'];
          $review ->user_name = $request['user_name'];
          $review ->rating = $request['rating'];
          $review ->place_id = $request['place_id'];
@@ -174,7 +189,6 @@ class PlacesController extends Controller
          $place_id = $review->place_id;
          $review->delete();
          return redirect()->action('PlacesController@placeDetail',['id'=>$place_id]);
-
     }
 
     public static function getReview($id) {

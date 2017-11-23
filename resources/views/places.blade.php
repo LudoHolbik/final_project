@@ -6,72 +6,67 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
     <title>Places</title>
-
- <link rel="stylesheet" href="/css/places.css">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/places.css">
 
 </head>
 <body>
 
 
-
-
-        <div class="container">
-            <div class="row">
-                    <img class="logo "src="/img/logo.png" alt="">
-                <div class="col-8 header">
-
-                </div>
-            </div>
-        </div>
+@include ('header')
 
 <!--button for changing map and cards -->
         <div class="wrap">
-          		<a  href="/places/map" class="button">Map</a>
+          		<a  href="/place/map" class="button">Map</a>
                     <a  href="/places" class="button2">Cards</a>
         	</div>
 
 
 
         <section class="tabs">
-
         <form id="tabs" action="" method="post">
 
+            
+            <input id="tab0" type="radio" name="tabs">
+            <label for="tab0"><a href="{{ route('places') }}">All places</a></label>
 
-       
+            <input id="tab1" type="radio" name="tabs">
+            <label for="tab1"><a href="{{ route('places', ['id' => 1]) }}">Best Views</a></label>
 
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2"><a href="{{ route('places', ['id' => 2]) }}">Outdoors &amp; Summer hangouts</a></label>
 
-            <a href="{{ route('places') }}">All places</a>
+            <input id="tab3" type="radio" name="tabs">
+            <label for="tab3"><a href="{{ route('places', ['id' => 3]) }}">Hotels &amp; Hostels</a></label>
 
-          
-            <a href="{{ route('places', ['id' => 1]) }}">Best Views</a>
+            <input id="tab4" type="radio" name="tabs">
+            <label for="tab4"><a href="{{ route('places', ['id' => 4]) }}">Art galeries</a></label>
 
-            <a href="{{ route('places', ['id' => 2]) }}">Outdoors &amp; Summer hangouts</a>
+            <input id="tab5" type="radio" name="tabs">
+            <label for="tab5"><a href="{{ route('places', ['id' => 5]) }}">Cultural centres</a></label>
 
-            <a href="{{ route('places', ['id' => 3]) }}">Hotels &amp; Hostels</a>
+            <input id="tab6" type="radio" name="tabs">
+            <label for="tab6"><a href="{{ route('places', ['id' => 6]) }}">Cinemas</a></label>
 
-            <a href="{{ route('places', ['id' => 4]) }}">Art galeries</a>
+            <input id="tab7" type="radio" name="tabs">
+            <label for="tab7"><a href="{{ route('places', ['id' => 7]) }}">??</a></label>
 
-            <a href="{{ route('places', ['id' => 5]) }}">Cultural centres</a>
-
-            <a href="{{ route('places', ['id' => 6]) }}">Cinemas</a>
 
             <a href="{{ route('places', ['id' => 7]) }}">??</a>
-            
+
         </form>
         </section>
 
 <!--
     position:absolute
-
+        
 
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start
 -->
-
 
     <div class="wrapper d-flex flex-row flex-wrap">
 
@@ -94,16 +89,34 @@
                                 <span>{{$place['address']}}</span>
 
                             <div class="side">
-                                <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span> 
-                                                              
-                                
-                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>  
-                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
+
+
 
                                 <span id="like-count"></span>
                             
                               
+
+                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>
+                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
+
+                                <button class="like" data-id="{{$place['id']}}">LIKE</button>
+                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
+
+                                <div id="likes"></div>
+
+                                <span><a href="">Show in map</a> </span>
+                                <span><a href="">Show more<</a></span> 
+                                                              
+                                
+                                <button class="like" data-id="{{$place['id']}}">LIKE</button>  
+                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
+
+                                <div id="likes"></div>                                                                   
+                                
+                              
+
+
+
                                 <span><a href="/places/detail/{{ $place -> id }}">Show detail</a></span>
                             </div>
                         </div>
@@ -124,10 +137,11 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<script src="/js/places.js"></script>
+<script src="/js/places.js"></script> 
 
 <script>
-    
+
+
 /*-----------
 LIKE FUNCTION
 ------------*/
@@ -138,8 +152,13 @@ function likeHandler(id, button){
         likeButton.html("UNDO");
     } else if(likeButton.html() === 'UNDO'){
         likeButton.html('LIKE');
+
     } 
             
+
+    }
+
+
     $.ajax({
         "url" : "/like",
         "type" : "get",
@@ -173,7 +192,7 @@ function undoLikeHandler(id, button){
 */ 
 /*------------
 DISLIKE FUNCTION
--------------*/        
+-------------*/
 
 function dislikeHandler(id, button){
     var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
@@ -181,18 +200,78 @@ function dislikeHandler(id, button){
         dislikeButton.html("UNDO");
     }   else if(dislikeButton.html() == 'UNDO'){
         dislikeButton.html("DISLIKE");
-    } 
-            
+    }
+
     $.ajax({
         "url" : "/dislike",
         "type" : "get",
         "data" : {
-            "id": id        
+            "id": id
         }
     }).done(function(data) {
         alert("success");
     });
 }
+    
+    /*-----------
+    LIKE FUNCTION
+    ------------*/
+
+$(function(){
+    $('.like').click(function()
+        {                                                   
+            // menit text na liked  
+            if ($(this).text() === 'LIKE'){
+                $(this).text('UNDO');
+            }else{
+                ($(this).text() === 'UNDO');
+                $(this).text('LIKE');
+            }
+            
+            $.ajax({
+            "url" : "/like",
+            "type" : "get",
+            "data" : {
+                "id": $('.like').data("id")
+            }
+        })
+        .done(function(data) {
+            alert( "success" );
+        })
+    });   
+});
+        // var X = TRUE
+        //prebehne AJAX posli na controller
+    
+    /*------------
+    DISLIKE FUNCTION
+    -------------*/        
+  
+$(function(){
+    $('.dislike').click(function()
+        {                                                   
+            // menit text na liked  
+            if ($(this).text() === 'DISLIKE'){
+                $(this).text('UNDO');
+            }else{
+                ($(this).text() === 'UNDO');
+                $(this).text('DISLIKE');
+            }
+            
+            $.ajax({
+            "url" : "/dislike",
+            "type" : "get",
+            "data" : {
+                "id": $('.dislike').data("id")
+            }
+        })
+        .done(function(data) {
+            alert( "success" );
+        })
+
+    });
+});
+
 
 /*------------
 UNDO DISLIKE
@@ -215,7 +294,11 @@ function undoDislikeHandler(id, button){
     });
 }
 */                                
+
+
+
                                     
+
 </script>
 
 </body>

@@ -11,7 +11,6 @@
     <title>URBAN TRAVELER</title>
 
     <!-- Styles -->
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!--added -->
 
@@ -32,8 +31,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       <!-- {{ config('app.name', 'Laravel') }} --> MAIN PAGE
+                    <a class="navbar-brand" href="{{ url('/places') }}">
+                       <!-- {{ config('app.name', 'Laravel') }} --> Places
                     </a>
                 </div>
 
@@ -91,7 +90,15 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
-        })
+       });
+
+       $(document).ready(function(){
+       $('#tip').click(function(){
+            console.log('click');
+            $(".hint").show();
+       })
+       });
+
     </script>
 
     @yield('scripts')
