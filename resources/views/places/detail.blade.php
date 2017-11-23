@@ -82,6 +82,45 @@
      </form>
 </div>
 
+@if($error = Session::get('error'))
+  {{ $error }}
+@endif
+<a href="{{action('FavouriteController@insertPlace', ['id'=> $places -> id])}}" data-id="{{ $places -> id }}" id="get_review" type="button" name="add_place">I want to visit this place!</a>
+<!--
+  <body>
+        <div>
+        <ul id="places">
+            <li>Metronome</li>
+            <li>Stalin</li>
+            <li>Other</li>
+        </ul>
+        <input type="text" id="add" size ="50"/>
+        
+        <a type="button" id="btnAdd" value="I want to visit this place" onclick="addItem()"></a>
+        </div>
+    </body>
+
+    <script>
+    function addItem(){
+        var li = document.createElement("LI");  
+        var input = document.getElementById("add");
+        li.innerHTML = input.value;
+        input.value = "";
+
+        document.getElementById("places").appendChild(li);
+    }
+    </script>
+  -->
+
+
+
+
+
+
+
+
+
+
 
 <div id="map" style="width:600px; height:600px"></div>
 

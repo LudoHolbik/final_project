@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<div>
+  <h5>Place I wish to visit:</h5>
+  @foreach ($places as $place)
+  <ol>
+<li>{{ $place -> name }}</li>
+</ol>
+  @endforeach
+
+</div>
+
+
+
 
 <div class="panel-body">
 

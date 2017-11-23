@@ -101,15 +101,9 @@
                                 <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>  
                                 <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
 
-
-                                <button class="like" data-id="{{$place['id']}}">LIKE</button>
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
-
-                                <div id="likes"></div>
-
-
-
-
+                                <span id="like-count"></span>
+                            
+                              
                                 <span><a href="/places/detail/{{ $place -> id }}">Show detail</a></span>
                             </div>
                         </div>
@@ -142,9 +136,9 @@ function likeHandler(id, button){
     var likeButton = $(button);/*'.like[data-id='+id+']'); */
     if (likeButton.html() === 'LIKE'){
         likeButton.html("UNDO");
-    }else if(likeButton.html() === 'UNDO'){
+    } else if(likeButton.html() === 'UNDO'){
         likeButton.html('LIKE');
-    }
+    } 
             
     $.ajax({
         "url" : "/like",
@@ -158,6 +152,26 @@ function likeHandler(id, button){
 }
 
 /*------------
+UNDO LIKE
+------------- 
+
+function undoLikeHandler(id, button){
+    var undoLikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if (undoLikeButton.html() == "UNDO"){
+            undoLikeButton.html('LIKE');
+        }
+        $.ajax({
+        "url" : "/undoLike",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+}
+*/ 
+/*------------
 DISLIKE FUNCTION
 -------------*/        
 
@@ -165,9 +179,9 @@ function dislikeHandler(id, button){
     var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
         if (dislikeButton.html() == 'DISLIKE'){
         dislikeButton.html("UNDO");
-    }else if(dislikeButton.html() == 'UNDO'){
+    }   else if(dislikeButton.html() == 'UNDO'){
         dislikeButton.html("DISLIKE");
-    }
+    } 
             
     $.ajax({
         "url" : "/dislike",
@@ -180,7 +194,27 @@ function dislikeHandler(id, button){
     });
 }
 
-                                      
+/*------------
+UNDO DISLIKE
+-------------   
+
+function undoDislikeHandler(id, button){
+    var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if(dislikeButton.html() == 'UNDO'){
+        dislikeButton.html("DISLIKE");
+    }
+            
+    $.ajax({
+        "url" : "/undoDislike",
+        "type" : "get",
+        "data" : {
+            "id": id        
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+}
+*/                                
                                     
 </script>
 

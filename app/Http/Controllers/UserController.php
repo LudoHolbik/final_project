@@ -10,16 +10,22 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Input;
 use App\User;
+use App\Favourites;
+use App\Place;
 
 
 class UserController extends Controller
 {
     public function user_info() {
-         $user_id = Auth::User() -> id;
-         $user = User::where('id', $user_id)->first();
-          return view ('home', ['user' => $user]);
+
+        $user_id = Auth::User() -> id;
+        $user = User::where('id', $user_id)->first();
+        $place = Favourites::leftJoin('places', 'favourites.place_id', '=', 'places.id')->where('user_id', $user_id)->get();
+        return view ('home', ['user' => $user],['places'=>$place]);
 
      }
+
+   
 
      public function updateUser() {
     $request = request();

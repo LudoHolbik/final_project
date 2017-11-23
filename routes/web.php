@@ -58,7 +58,10 @@ Route::get('/places/7', 'PlacesController@Cinemas');
 Route::get('/places/map', 'PlacesController@map');
 Route::post('/places/map/filter', 'PlacesController@mapFilter');
 Route::get('/places/{id?}', 'PlacesController@index')->name('places');
+
 Route::get('/like','likeController@like');
+Route::get('/undolike','likeController@undoLike');
+
 Route::get('/dislike','likeController@dislike');
 
 Route::get('/places/detail/{id}', 'PlacesController@placeDetail');
@@ -70,3 +73,7 @@ Route::post('/places/detail/{id}', 'PlacesController@createReview');
 Route::get('/places/detail/{id}/delete', 'PlacesController@deleteReview');
 
 //Route::get('/places/detail/{id}', 'PlacesController@getReview');
+
+Route::get('/places/favourites/{id}', 'FavouriteController@insertPlace');
+
+//Route::get('/home', 'FavouriteController@listPlaces');
