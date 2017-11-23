@@ -413,7 +413,7 @@ a.button2:hover {
  	box-shadow: #1abc9c 0 80px 0px 2px inset;
  }
 
- #tabs > a{
+ #tabs > a {
    display: inline-block;
    position: relative;
  }

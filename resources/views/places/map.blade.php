@@ -1,10 +1,18 @@
 @extends('layouts.app')
 
+<div class="wrap">
+            <a  href="/place/map" class="button">Map</a>
+            <a  href="/places" class="button2">Cards</a>
+ </div>
+
 @section('content')
 <form id="filter" action="">
     @foreach($types as $type)
-        <input type="checkbox" name="types[]" value="{{ $type -> id }}">{{ $type -> name }}
-        <br>
+    <label for="types[]">{{ $type -> name }}
+        <input  type="checkbox" name="types[]" value="{{ $type -> id }}">
+      </label>
+
+
     @endforeach
 </form>
 
@@ -49,7 +57,7 @@
             })
         });
 
-        
+
 
         var markers = [];
 
@@ -71,7 +79,7 @@
 
             markers = [];
         }
-        
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>

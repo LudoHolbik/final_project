@@ -29,7 +29,7 @@
 
 <!--button for changing map and cards -->
         <div class="wrap">
-          		<a  href="/places/map" class="button">Map</a>
+          		<a  href="/place/map" class="button">Map</a>
                     <a  href="/places" class="button2">Cards</a>
         	</div>
 
@@ -40,12 +40,11 @@
         <form id="tabs" action="" method="post">
 
 
-       
+
 
 
             <a href="{{ route('places') }}">All places</a>
 
-          
             <a href="{{ route('places', ['id' => 1]) }}">Best Views</a>
 
             <a href="{{ route('places', ['id' => 2]) }}">Outdoors &amp; Summer hangouts</a>
@@ -59,7 +58,7 @@
             <a href="{{ route('places', ['id' => 6]) }}">Cinemas</a>
 
             <a href="{{ route('places', ['id' => 7]) }}">??</a>
-            
+
         </form>
         </section>
 
@@ -71,7 +70,6 @@
     flex-wrap: wrap;
     align-items: flex-start
 -->
-
 
     <div class="wrapper d-flex flex-row flex-wrap">
 
@@ -94,22 +92,14 @@
                                 <span>{{$place['address']}}</span>
 
                             <div class="side">
-                                <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span> 
-                                                              
-                                
-                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>  
-                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
 
+                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>
+                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
 
                                 <button class="like" data-id="{{$place['id']}}">LIKE</button>
                                 <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
 
                                 <div id="likes"></div>
-
-
-
-
                                 <span><a href="/places/detail/{{ $place -> id }}">Show detail</a></span>
                             </div>
                         </div>
@@ -133,7 +123,7 @@
 <script src="/js/places.js"></script>
 
 <script>
-    
+
 /*-----------
 LIKE FUNCTION
 ------------*/
@@ -145,7 +135,7 @@ function likeHandler(id, button){
     }else if(likeButton.html() === 'UNDO'){
         likeButton.html('LIKE');
     }
-            
+
     $.ajax({
         "url" : "/like",
         "type" : "get",
@@ -159,7 +149,7 @@ function likeHandler(id, button){
 
 /*------------
 DISLIKE FUNCTION
--------------*/        
+-------------*/
 
 function dislikeHandler(id, button){
     var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
@@ -168,20 +158,20 @@ function dislikeHandler(id, button){
     }else if(dislikeButton.html() == 'UNDO'){
         dislikeButton.html("DISLIKE");
     }
-            
+
     $.ajax({
         "url" : "/dislike",
         "type" : "get",
         "data" : {
-            "id": id        
+            "id": id
         }
     }).done(function(data) {
         alert("success");
     });
 }
 
-                                      
-                                    
+
+
 </script>
 
 </body>

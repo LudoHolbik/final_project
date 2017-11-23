@@ -3,7 +3,6 @@
 @section('content')
 <div class="info" style="width: 50%; background-color:white" >
      <h1>{{ $places -> name }}</h1>
-     <p>{{ $places -> id }}</p>
           <p>{{ $places-> address }}</p>
           <p>{{ $places -> description }}</p>
 
@@ -28,22 +27,30 @@
 
 <div id="show_review" class="reviews" style="border: 1px solid black">
 
-
-
-
 </div>
+
 <button data-id="{{ $places -> id }}" id="get_review" type="button" name="get_review">See all reviews</button>
 
 <div class="create_review">
 
-     <form class="" action="" method="post">
+     <form id="rate" action="" method="post">
            {{ csrf_field() }}
            <label for="review">Write a review</label>
+           @if($errors->has('place_id'))
+           <h5 style="color:red"> * You have already written review for this place</h5>
+           @endif
            <br>
+           @if($errors->has('review'))
+           <h5 style="color:red"> * Review must not be empty</h5>
+           @endif
            <textarea name="review" rows="8" cols="80"></textarea>
            <br>
            <label for="">Rating</label>
       <br>
+      @if($errors->has('rating'))
+      <h5 style="color:red"> * You have to rate this place</h5>
+      @endif
+<div id="check">
       <div class="form-check form-check-inline">
         <label class="form-check-label">0
           <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="0">
@@ -74,11 +81,12 @@
           <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="5">
         </label>
       </div>
+
       <input type="hidden" name="user_id" value="{{ Auth::user() -> id }}">
        <input type="hidden" name="user_name" value="{{ Auth::user() -> name }}">
        <input type="hidden" name="place_id" value="{{ $places->id }}">
        <input type="submit" name="" value="Submit">
-
+</div>
      </form>
 </div>
 
@@ -123,15 +131,15 @@ $(document).ready(function(){
              'data': {
                   'id': $('#get_review').data('id')
              }
-
         })
         .done(function(data){
                      $('#show_review').append(data);
                      $('#get_review').hide();
-
         })
    });
 })
+
+
 
  </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
