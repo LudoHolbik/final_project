@@ -66,21 +66,33 @@ class PlacesController extends Controller
     }
 
 // end of maps controller
+/* USELESS FUNCTION
 
     public function places_view() {
         $user_id = Auth::User() -> id;
         $user = User::where('id', $user_id)->first();
-         return view ('home', ['user' => $user]);
+         return view ('home', ['user' => $user,
+         
+         ]);
 
     }
-
-    public function index($id = null){
+*/
+    public function index(){
+        $id = Auth::user();
         if ($id == null) {
         $places = Place::all();
+        // $totalLikes =  \App\Likes::where('place_id', $id)->count('n_of_likes');
         return view('places', ['places'=> $places]);
         }else{
-            $places=Place::where('type_id', $id)->get();
-            return view('places', ['places'=> $places]);
+            $places=Place::all();
+            foreach($places as $place) {
+                $likes = \App\Likes::Where('place_id', $place->id)->get();
+                $likes = count($likes);
+                $place['likes'] = $likes;
+            }
+            $totalLikes = \App\Likes::all();
+            // $places=Place::where('type_id', $id)->get();
+            return view('places', ['places'=> $places, 'totalLikes' => $totalLikes]);
         }
 
     }
@@ -156,8 +168,17 @@ class PlacesController extends Controller
             return  redirect('/');
         } else {
          $place = Place::where('id', $id)->first();
+
+         $likes = \App\Likes::where('user_id',Auth::id())->where('place_id',$id)->first(); 
+         $totalLikes =  \App\Likes::where('place_id', $id)->count('n_of_likes');
+        
+        
         // $review = Review::where('place_id', $id)->get();
-         return view('places.detail', ['places' => $place]//, ['reviews' => $review]
+         return view('places.detail', [
+             'places' => $place,
+             'like'=> $likes,
+             'totallikes' => $totalLikes
+        ]//, ['reviews' => $review]
     );
     }
 }

@@ -72,6 +72,9 @@
 
         @foreach($places as $place)
 
+
+
+
             <div class=" card [ is-collapsed ] ">
                <img class="imaj" src="" alt="">
                 <div class="card__inner [ js-expander ]">
@@ -87,6 +90,7 @@
                                 <div class="tab">{{$place['type']}}</div>
                                 <span>{{$place['opening_hours']}}</span>
                                 <span>{{$place['address']}}</span>
+                                <span>{{$place['likes']}}</span>
 
                             <div class="side">
 
@@ -97,22 +101,14 @@
                               
 
                                 <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>
-                                <button onclick="dislikeHandler({{$place['id']}},this);" class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
-
-                                <button class="like" data-id="{{$place['id']}}">LIKE</button>
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
-
-                                <div id="likes"></div>
-
-                                <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span> 
-                                                              
-                                
+                               
+                                                                                           
+                                <!--
                                 <button class="like" data-id="{{$place['id']}}">LIKE</button>  
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
+                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
+                                --> 
 
-                                <div id="likes"></div>                                                                   
-                                
+                                <div id="likes"></div>                                                                
                               
 
 
@@ -129,6 +125,7 @@
                 </div>
             </div>
             @endforeach
+
     </div>
 
 
@@ -156,7 +153,7 @@ function likeHandler(id, button){
     } 
             
 
-    }
+    
 
 
     $.ajax({
@@ -168,8 +165,8 @@ function likeHandler(id, button){
     }).done(function(data) {
         alert("success");
     });
-}
 
+}
 /*------------
 UNDO LIKE
 ------------- 
@@ -217,6 +214,7 @@ function dislikeHandler(id, button){
     LIKE FUNCTION
     ------------*/
 
+/*
 $(function(){
     $('.like').click(function()
         {                                                   
@@ -246,7 +244,7 @@ $(function(){
     /*------------
     DISLIKE FUNCTION
     -------------*/        
-  
+/*
 $(function(){
     $('.dislike').click(function()
         {                                                   
@@ -272,6 +270,7 @@ $(function(){
     });
 });
 
+*/
 
 /*------------
 UNDO DISLIKE

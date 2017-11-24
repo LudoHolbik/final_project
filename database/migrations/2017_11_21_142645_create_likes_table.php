@@ -20,6 +20,7 @@ class CreateLikesTable extends Migration
             $table->timestamps();
             $table->unique(array('user_id', 'place_id'),'unique_user_place');
             $table->integer('n_of_likes')->default(0);
+            $table->integer('n_of_dislikes')->default(0);
         });
     }
 
