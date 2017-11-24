@@ -1,7 +1,176 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ $places -> name }}</title>
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/details.css') }}" rel="stylesheet">
+  <script src="https://use.fontawesome.com/86896db091.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
+</head>
+<body>
+@include('header')
 
-@section('content')
-<div class="info" style="width: 50%; background-color:white" >
+    <div class="container">
+        <div class="row">
+            <div class="col-9 wrap">
+
+                <div class="place-info">
+                    <span class="place-name">{{ $places -> name }}</span>
+                    <div class="details">
+                        <span class="type">Best Views</span>
+                        <span class="address">{{ $places-> address }}</span>
+                        <span class="description"> {{ $places -> description }}</span>
+
+                        @if( $places -> telephone == null)
+                        <span class="phone">{{ $places-> telephone }}</span>
+                        @endif
+
+                        @if( $places -> wifi == 0)
+                        <span class="wifi">Yes Wifi</span>
+                        @else
+                        <span class="wifi">No Wifi</span>
+                        @endif
+
+                        <span class="hours">{{ $places -> opening_hours }}</span>
+                        <a href="{{action('FavouriteController@insertPlace', ['id'=> $places -> id])}}" data-id="{{ $places -> id }}" id="get_review" type="button" name="add_place">I want to visit this place!</a>
+
+                        <!-- <a type="button" id="btnAdd" value="I want to visit this place" onclick="addItem()"></a> -->
+
+                    </div>
+                </div>
+
+                <div class="place-pic">
+                    <img src="img/met.jpg" alt="">
+                </div>
+
+                <div class="container ">
+                    <div class="row feed">
+                        <div class="col-8 ">
+                            <div class="add-post">
+                            
+                                <form id="rate" action="" method="post">
+                                      {{ csrf_field() }}
+                                      
+                                      @if($errors->has('place_id'))
+                                      <h5 style="color:red"> * You have already written review for this place</h5>
+                                      @endif
+                                      <br>
+                                      @if($errors->has('review'))
+                                      <h5 style="color:red"> * Review must not be empty</h5>
+                                      @endif
+                                      <textarea name="" placeholder=" Write Your Review" id="review" cols="100" rows="7"></textarea>
+                                      
+                                  <br>
+                                 
+                                  
+                                
+                                <div class="button-box">
+                                <div id="check">
+                                  <label for="">Rate This Place</label>
+                                   @if($errors->has('rating'))
+                                  <h5 style="color:red"> * You have to rate this place</h5>
+                                  @endif
+                                    <div class="form-check form-check-inline">
+                                      <label class="form-check-label">0
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="0">
+                                  </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <label class="form-check-label">1
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="1">
+                                      </label>
+                                    </div>
+                                    <div class="form-check form-check-inline ">
+                                      <label class="form-check-label">2
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="2">
+                                      </label>
+                                    </div>
+                                    <div class="form-check form-check-inline ">
+                                      <label class="form-check-label">3   </label>
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="3">
+                                      </label>
+                                    </div>
+                                    <div class="form-check form-check-inline ">
+                                      <label class="form-check-label">4
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="4">
+                                      </label>
+                                    </div>
+                                    <div class="form-check form-check-inline ">
+                                      <label class="form-check-label">5
+                                        <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="5">
+                                      </label>
+                                    </div>
+                                    <button class="btn">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>Add Picture</button>
+
+                                    
+                              
+
+                                <input type="hidden" name="user_id" value="{{ Auth::user() -> id }}">
+                                <input type="hidden" name="user_name" value="{{ Auth::user() -> name }}">
+                                <input type="hidden" name="place_id" value="{{ $places->id }}">
+                                <input type="submit" name="" value="Submit">
+                                <button class="btn">
+                                        <i class="fa fa-paper-plane" aria-hidden="true"></i>Post</button>
+                                @if($error = Session::get('error'))
+                                {{ $error }}
+                                @endif
+                                </div>
+                                </div>
+                                  </div>
+                                      </form>
+                                  </div>
+
+
+                            <div class="post">
+                                <div class="post-id">
+                                    <img src="img/1.jpg" alt="">
+                                    <span class="post-name">Dangoç Lardanbiri</span>
+                                    <span class="date"></span>
+                                </div>
+
+                                <div class="post-content">
+                                    <p>
+                                        One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.
+                                        He lay on his armour-like back, and if he lifted his head a little he could see his
+                                        brown belly, slightly domed and divided by arches into stiff sections. The bedding
+                                        was hardly able to cover it and seemed ready to slide off any moment.
+                                    </p>
+                                    <button class="btn">
+                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
+
+                                    <button class="btn">
+                                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Dislike</button>
+
+                                </div>
+
+                            </div>
+                            <div class="map">
+                            <div id="map" style=" height:600px"></div>
+
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+
+<!-- <div class="info" style="width: 50%; background-color:white" >
      <h1>{{ $places -> name }}</h1>
           <p>{{ $places-> address }}</p>
           <p>{{ $places -> description }}</p>
@@ -19,13 +188,11 @@
           <p>Wi-Fi = Yes</p>
      @endif
 
-<p></p>
-</div>
-<div class="map">
 
-</div>
+</div> -->
 
-<div id="show_review" class="reviews" style="border: 1px solid black">
+
+<!-- <div id="show_review" class="reviews" style="border: 1px solid black">
 
 </div>
 
@@ -88,13 +255,12 @@
        <input type="submit" name="" value="Submit">
 </div>
      </form>
-</div>
+</div> -->
 
-@if($error = Session::get('error'))
+<!-- @if($error = Session::get('error'))
   {{ $error }}
-@endif
-<a href="{{action('FavouriteController@insertPlace', ['id'=> $places -> id])}}" data-id="{{ $places -> id }}" id="get_review" type="button" name="add_place">I want to visit this place!</a>
-<!--
+@endif -->
+<!-- 
   <body>
         <div>
         <ul id="places">
@@ -104,9 +270,9 @@
         </ul>
         <input type="text" id="add" size ="50"/>
         
-        <a type="button" id="btnAdd" value="I want to visit this place" onclick="addItem()"></a>
+        
         </div>
-    </body>
+    </body> -->
 
     <script>
     function addItem(){
@@ -118,19 +284,10 @@
         document.getElementById("places").appendChild(li);
     }
     </script>
-  -->
 
 
 
 
-
-
-
-
-
-
-
-<div id="map" style="width:600px; height:600px"></div>
 
 
 <script
@@ -183,4 +340,5 @@ $(document).ready(function(){
  </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
 
-@endsection
+</body>
+</html>

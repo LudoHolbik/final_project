@@ -1,4 +1,5 @@
-.wrap {
+
+    .wrap {
     width: 80%;
     margin: 2em auto;
     margin-bottom: 3em;
@@ -55,13 +56,13 @@
 .row .feed {
     margin-top: 20em;
     margin-left: 1em;
+    width: 60em;
+    font-family: 'Lato', sans-serif;
 }
 
 .add-post {
     display: flex;
     flex-direction: column;
-    height: 13.5em;
-    width: 42.5em;
     margin-left: 1.3em;
     z-index: -1;
     background-color: rgb(246, 255, 249);
@@ -90,11 +91,21 @@
     align-items: center;
 }
 
+#check{
+    display: flex;
+    flex-direction: row;
+    margin-right:2em; 
+   
+}
+.form-inline{
+    justify-content: flex-start;
+}
+
 .post {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 42.5em;
+    
     margin-left: 1.3em;
     margin-top: 1em;
     background-color: rgb(246, 255, 249);
@@ -125,4 +136,8 @@
 
 .post-content {
     padding: 1em;
+}
+
+.map{
+    margin:0;
 }

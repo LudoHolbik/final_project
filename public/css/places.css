@@ -24,6 +24,7 @@
     -ms-flex-flow: row wrap;
         flex-flow: row wrap;
     align-items: flex-start;
+    
   }
 
   .card {
@@ -31,6 +32,7 @@
     width: calc((100% / 3) - 30px);
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    position: static!important;
 
   }
   @media screen and (max-width: 991px) {
@@ -203,7 +205,7 @@
     box-shadow: 5px 5px 2px 1px rgba(0,0,0,0.04);
     display: flex;
     line-height: 2.2em;
-    font-size: 0.58em;
+    font-size: 0.5em;
     justify-content: space-between;
 }
 
@@ -234,11 +236,11 @@
     margin-bottom: 0.5em;
     padding: 0.5em;
     width: 8em;
-    background-color:#06D6A0 ;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.6em;
     color:#3A405A ;
-    box-shadow: 2px 2px 8px black ;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
 }
 
 .desc {
@@ -270,13 +272,6 @@
     color: #3A405A;
     border-bottom: 1px solid #3A405A;
 }
-
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
 
   input {
     display: none;
@@ -417,4 +412,15 @@ a.button2:hover {
  #tabs > a {
    display: inline-block;
    position: relative;
+ }
+
+ button .like{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
  }

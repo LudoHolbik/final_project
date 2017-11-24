@@ -18,18 +18,23 @@
 ul{
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    justify-content: flex-end;
     list-style-type: none;
     padding: 1em;  
+    font-size: 1.5em;
+    position: absolute;
+    margin-top:1em;
+   
+
 }
-/* ul a{
+ul a{
     color: rgb(245, 233, 233);
-    font-size: 1.3em;
+    
 }
 ul a:hover{
     color: #C63674;
-    font-size: 1.5em;
-} */
+    
+}
 
 ul a.effect-box:after,
 ul a.effect-box:before {

@@ -1,11 +1,16 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://use.fontawesome.com/86896db091.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
+  <link href="{{ asset('css/user.css') }}" rel="stylesheet">
+</head>
+<body>
 
-<div class="wrap">
-            <a  href="/place/map" class="button">Map</a>
-            <a  href="/places" class="button2">Cards</a>
- </div>
-
-@section('content')
 <form id="filter" action="">
     @foreach($types as $type)
     <label for="types[]">{{ $type -> name }}
@@ -18,7 +23,7 @@
 
 
 <div id="map" style="width: 100%; height: 500px"></div>
-@endsection
+
 
 
 @section('scripts')
@@ -84,3 +89,6 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
 @endsection
+    
+</body>
+</html>
