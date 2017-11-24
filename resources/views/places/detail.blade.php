@@ -47,13 +47,20 @@
                 </div>
 
                 <div class="place-pic">
-                    <img src="img/met.jpg" alt="">
+                <img style="width:400px; height:300px" src="/img/{{$places->img}}" alt="???">
                 </div>
 
                 <div class="container ">
                     <div class="row feed">
                         <div class="col-8 ">
                             <div class="add-post">
+                            
+                            <div id=“show_review” class=“reviews” style=“border: 1px solid black”>
+
+                            </div>
+
+                            <button data-id="{{ $places -> id }}" id="get_review" type="button" name="get_review">See all reviews</button>
+                            
                             
                                 <form id="rate" action="" method="post">
                                       {{ csrf_field() }}
@@ -164,7 +171,7 @@
         </div>
     </div>
 
-
+<!--
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -173,7 +180,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
 
-
+-->
 <!-- <div class="info" style="width: 50%; background-color:white" >
      <h1>{{ $places -> name }}</h1>
           <p>{{ $places-> address }}</p>
@@ -343,6 +350,9 @@ $(document).ready(function(){
 
 
  </script>
+
+<button class="btn"  onclick="likeHandler({{$places['id']}},this);" data-id="{{$places['id']}} "><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
+
 
 @if ($like && $like->n_of_likes==1)
 <button onclick="likeHandler({{$places['id']}},this);" class="like" data-id="{{$places['id']}}">UNDO</button>

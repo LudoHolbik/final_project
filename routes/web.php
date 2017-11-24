@@ -37,9 +37,13 @@ Route::get('/places', 'PlacesController@index')->name('places');
 
 
 // URLs for indivdidual categories of places
+Route::get('/place/map', 'PlacesController@map');
+Route::post('/place/map/filter', 'PlacesController@mapFilter');
 
 
-Route::get('/places/{id}', 'PlacesController@Best_Views_Select');
+
+
+//Route::get('/places/{id}', 'PlacesController@Best_Views_Select');
 /*
 Route::get('/places/2', 'PlacesController@Summer_Hangouts_Select');
 
@@ -55,9 +59,7 @@ Route::get('/places/7', 'PlacesController@Cinemas');
 */
 
 //URL for the whole map
-Route::get('/place/map', 'PlacesController@map');
 
-Route::post('/places/map/filter', 'PlacesController@mapFilter');
 Route::get('/places/{id?}', 'PlacesController@index')->name('places');
 
 Route::get('/like','likeController@like');

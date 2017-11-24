@@ -1,3 +1,5 @@
+
+
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +15,7 @@
                         <nav class="navbar navbar-toggleable-md">
                             <ul>
                              <li class= "user"><a class="effect-box" href="{{ route('places') }}">Places</a></li>
-                             <li class= "user"><a class="effect-box" href="">Map  View</a></li>
+                             <li class= "user"><a class="effect-box" href="/place/map">Map  View</a></li>
                              
 
                              @if(Auth::guest())

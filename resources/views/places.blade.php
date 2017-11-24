@@ -95,14 +95,6 @@
                                 <span>{{$place['likes']}}</span>
 
                             <div class="side">
-<<<<<<< HEAD
-                                <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span> 
-                                                              
-                                
-                                <button class="like" data-id="{{$place['id']}}"></i>LIKE</button>  
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
-=======
 
 
 
@@ -117,7 +109,6 @@
                                 <button class="like" data-id="{{$place['id']}}">LIKE</button>  
                                 <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
                                 --> 
->>>>>>> 8970385e097ec6891ce88feccd938a4879487881
 
                                 <div id="likes"></div>                                                                
                               
@@ -144,12 +135,6 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<<<<<<< HEAD
-  <script type="text/javascript" src="{{ asset('js/places.js') }}"></script>
-
-
-<script>
-=======
 <script src="/js/places.js"></script> 
 
 <script>
@@ -225,7 +210,6 @@ function dislikeHandler(id, button){
         alert("success");
     });
 }
->>>>>>> 8970385e097ec6891ce88feccd938a4879487881
     
     /*-----------
     LIKE FUNCTION
@@ -283,8 +267,6 @@ $(function(){
         .done(function(data) {
             alert( "success" );
         })
-<<<<<<< HEAD
-=======
 
     });
 });
@@ -309,7 +291,6 @@ function undoDislikeHandler(id, button){
         }
     }).done(function(data) {
         alert("success");
->>>>>>> 8970385e097ec6891ce88feccd938a4879487881
     });
 
 });

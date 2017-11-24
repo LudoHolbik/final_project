@@ -32,8 +32,9 @@
 
                     </div>
                 </div>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaa
                 <div class="place-pic">
-                    <img src="img/met.jpg" alt="">
+                    <img style="width:200px; height:200px" src="/img/{{$places->img}}" alt="???">
                 </div>
                 
                 <div class="container ">
