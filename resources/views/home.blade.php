@@ -8,6 +8,8 @@
   <script src="https://use.fontawesome.com/86896db091.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
   <link href="{{ asset('css/user.css') }}" rel="stylesheet">
+  <base href="{{env('APP_URL')}}">
+
 
 </head>
 <body>

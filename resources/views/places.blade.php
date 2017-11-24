@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
     <link href="{{ asset('css/places.css') }}" rel="stylesheet">
+    <base href="{{env('APP_URL')}}">
     
 </head>
 <body>
@@ -73,6 +74,9 @@
 
         @foreach($places as $place)
 
+
+
+
             <div class=" card [ is-collapsed ] ">
                <img class="imaj" src="" alt="">
                 <div class="card__inner [ js-expander ]">
@@ -88,17 +92,34 @@
                                 <div class="tab">{{$place['type']}}</div>
                                 <span>{{$place['opening_hours']}}</span>
                                 <span>{{$place['address']}}</span>
+                                <span>{{$place['likes']}}</span>
 
                             <div class="side">
+<<<<<<< HEAD
                                 <span><a href="">Show in map</a> </span>
                                 <span><a href="">Show more<</a></span> 
                                                               
                                 
                                 <button class="like" data-id="{{$place['id']}}"></i>LIKE</button>  
                                 <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
+=======
 
-                                <div id="likes"></div>                                                                   
-                                
+
+
+                                <span id="like-count"></span>
+                            
+                              
+
+                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>
+                               
+                                                                                           
+                                <!--
+                                <button class="like" data-id="{{$place['id']}}">LIKE</button>  
+                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
+                                --> 
+>>>>>>> 8970385e097ec6891ce88feccd938a4879487881
+
+                                <div id="likes"></div>                                                                
                               
 
 
@@ -114,6 +135,7 @@
                 </div>
             </div>
             @endforeach
+
     </div>
 
 
@@ -122,15 +144,94 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
   <script type="text/javascript" src="{{ asset('js/places.js') }}"></script>
 
 
 <script>
+=======
+<script src="/js/places.js"></script> 
+
+<script>
+
+
+/*-----------
+LIKE FUNCTION
+------------*/
+
+function likeHandler(id, button){
+    var likeButton = $(button);/*'.like[data-id='+id+']'); */
+    if (likeButton.html() === 'LIKE'){
+        likeButton.html("UNDO");
+    } else if(likeButton.html() === 'UNDO'){
+        likeButton.html('LIKE');
+
+    } 
+            
+
+    
+
+
+    $.ajax({
+        "url" : "/like",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+
+}
+/*------------
+UNDO LIKE
+------------- 
+
+function undoLikeHandler(id, button){
+    var undoLikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if (undoLikeButton.html() == "UNDO"){
+            undoLikeButton.html('LIKE');
+        }
+        $.ajax({
+        "url" : "/undoLike",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+}
+*/ 
+/*------------
+DISLIKE FUNCTION
+-------------*/
+
+function dislikeHandler(id, button){
+    var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if (dislikeButton.html() == 'DISLIKE'){
+        dislikeButton.html("UNDO");
+    }   else if(dislikeButton.html() == 'UNDO'){
+        dislikeButton.html("DISLIKE");
+    }
+
+    $.ajax({
+        "url" : "/dislike",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+}
+>>>>>>> 8970385e097ec6891ce88feccd938a4879487881
     
     /*-----------
     LIKE FUNCTION
     ------------*/
 
+/*
 $(function(){
     $('.like').click(function()
         {                                                   
@@ -160,7 +261,7 @@ $(function(){
     /*------------
     DISLIKE FUNCTION
     -------------*/        
-  
+/*
 $(function(){
     $('.dislike').click(function()
         {                                                   
@@ -182,6 +283,33 @@ $(function(){
         .done(function(data) {
             alert( "success" );
         })
+<<<<<<< HEAD
+=======
+
+    });
+});
+
+*/
+
+/*------------
+UNDO DISLIKE
+-------------   
+
+function undoDislikeHandler(id, button){
+    var dislikeButton = $(button); // ('.dislike[data-id='+id+']');
+        if(dislikeButton.html() == 'UNDO'){
+        dislikeButton.html("DISLIKE");
+    }
+            
+    $.ajax({
+        "url" : "/undoDislike",
+        "type" : "get",
+        "data" : {
+            "id": id        
+        }
+    }).done(function(data) {
+        alert("success");
+>>>>>>> 8970385e097ec6891ce88feccd938a4879487881
     });
 
 });

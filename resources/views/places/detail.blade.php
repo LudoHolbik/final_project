@@ -9,6 +9,8 @@
   <link href="{{ asset('css/details.css') }}" rel="stylesheet">
   <script src="https://use.fontawesome.com/86896db091.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
+  <base href="{{env('APP_URL')}}">
+
 </head>
 <body>
 @include('header')
@@ -337,7 +339,42 @@ $(document).ready(function(){
 
 
 
+
  </script>
+
+@if ($like && $like->n_of_likes==1)
+<button onclick="likeHandler({{$places['id']}},this);" class="like" data-id="{{$places['id']}}">UNDO</button>
+@else 
+<button onclick="likeHandler({{$places['id']}},this);" class="like" data-id="{{$places['id']}}">LIKE</button>
+@endif
+
+<script>
+function likeHandler(id, button){
+    var likeButton = $(button);/*'.like[data-id='+id+']'); */
+    if (likeButton.html() === 'LIKE'){
+        likeButton.html("UNDO");
+    } else if(likeButton.html() === 'UNDO'){
+        likeButton.html('LIKE');
+
+    } 
+            
+    $.ajax({
+        "url" : "/like",
+        "type" : "get",
+        "data" : {
+            "id": id
+        }
+    }).done(function(data) {
+        alert("success");
+    });
+
+}
+</script>
+
+
+
+
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
 
 </body>
