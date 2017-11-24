@@ -1,3 +1,5 @@
+
+
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -7,13 +9,13 @@
 
 <div class="container-fluid">
                 <div class="row">
-                        <img class="logo "src="../img/logo.png" alt="">
+                        <img class="logo "src="/img/logo.png" alt="">
                     <div class="col-12 header">
                             
                         <nav class="navbar navbar-toggleable-md">
                             <ul>
                              <li class= "user"><a class="effect-box" href="{{ route('places') }}">Places</a></li>
-                             <li class= "user"><a class="effect-box" href="">Map  View</a></li>
+                             <li class= "user"><a class="effect-box" href="http://www.final-project.test/place/map">Map  View</a></li>
                              
 
                              @if(Auth::guest())

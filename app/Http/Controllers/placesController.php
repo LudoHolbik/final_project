@@ -89,6 +89,7 @@ class PlacesController extends Controller
                 $likes = \App\Likes::Where('place_id', $place->id)->get();
                 $likes = count($likes);
                 $place['likes'] = $likes;
+                
             }
             $totalLikes = \App\Likes::all();
             // $places=Place::where('type_id', $id)->get();
@@ -187,6 +188,7 @@ class PlacesController extends Controller
 
     public static function createReview() {
          $request = request();
+         $id = Auth::user();
 
          $validatedData = $request->validate([
               'rating'=>'required',
@@ -194,10 +196,10 @@ class PlacesController extends Controller
               'place_id' => 'unique:reviews,place_id'. auth()->user()->user_id,
          ]);
 
-dd($validatedData);
+
          $review = new Review;
-         $review ->review = $validatedData['review'];
-         $review ->user_id = $validatedData['user_id'];
+         $review ->review = $validateData['review'];
+         $review ->user_id = $id['id'];
          $review ->user_name = $request['user_name'];
          $review ->rating = $request['rating'];
          $review ->place_id = $request['place_id'];

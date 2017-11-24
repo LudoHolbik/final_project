@@ -27,6 +27,7 @@
 
 
 
+
         <section class="tab">
         <form id="tabs" action="" method="post">
 
@@ -50,17 +51,17 @@
             <label for="tab5"><a href="{{ route('places', ['id' => 5]) }}">Cultural centres</a></label>
 
             <input id="tab6" type="radio" name="tabs">
-            <label for="tab6"><a href="{{ route('places', ['id' => 6]) }}">Cinemas</a></label>
+            <label for="tab6"><a href="{{ route('places', ['id' => 6]) }}">Reclaimed cultural centres</a></label>
 
             <input id="tab7" type="radio" name="tabs">
-            <label for="tab7"><a href="{{ route('places', ['id' => 7]) }}">??</a></label>
+            <label for="tab7"><a href="{{ route('places', ['id' => 7]) }}">Cinemas</a></label>
 
 
             <!-- <a href="{{ route('places', ['id' => 7]) }}">??</a> -->
 
         </form>
         </section>
-
+        
 <!--
     position:absolute
         
@@ -92,35 +93,12 @@
                                 <div class="tab">{{$place['type']}}</div>
                                 <span>{{$place['opening_hours']}}</span>
                                 <span>{{$place['address']}}</span>
-                                <span>{{$place['likes']}}</span>
+                                <span>Total likes: {{$place['likes']}}</span>
 
                             <div class="side">
-<<<<<<< HEAD
-                                <span><a href="">Show in map</a> </span>
-                                <span><a href="">Show more<</a></span> 
-                                                              
-                                
-                                <button class="like" data-id="{{$place['id']}}"></i>LIKE</button>  
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button> 
-=======
 
 
 
-                                <span id="like-count"></span>
-                            
-                              
-
-                                <button onclick="likeHandler({{$place['id']}},this);" class="like" data-id="{{$place['id']}}">LIKE</button>
-                               
-                                                                                           
-                                <!--
-                                <button class="like" data-id="{{$place['id']}}">LIKE</button>  
-                                <button class="dislike" data-id="{{$place['id']}}">DISLIKE</button>
-                                --> 
->>>>>>> 8970385e097ec6891ce88feccd938a4879487881
-
-                                <div id="likes"></div>                                                                
-                              
 
 
                                 <span><a href="/places/detail/{{ $place -> id }}">Show detail</a></span>
@@ -144,12 +122,10 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<<<<<<< HEAD
-  <script type="text/javascript" src="{{ asset('js/places.js') }}"></script>
 
 
-<script>
-=======
+
+
 <script src="/js/places.js"></script> 
 
 <script>
@@ -225,7 +201,6 @@ function dislikeHandler(id, button){
         alert("success");
     });
 }
->>>>>>> 8970385e097ec6891ce88feccd938a4879487881
     
     /*-----------
     LIKE FUNCTION

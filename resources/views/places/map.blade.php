@@ -23,10 +23,10 @@
 
 
 <div id="map" style="width: 100%; height: 500px"></div>
-
-
-
-@section('scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
     <script>
         var places = '{!! str_replace("'", "\'", $placesJSON) !!}';
         places = JSON.parse(places);
@@ -52,7 +52,8 @@
 
             $.ajax({
                 method: 'post',
-                url: '/places/map/filter',
+                url: '/place/map/filter',
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 data: data
             }).done(function(data){
                 places = JSON.parse(data);
@@ -88,7 +89,6 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
-@endsection
-    
+
 </body>
 </html>
