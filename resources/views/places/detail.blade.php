@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ $places -> name }}</title>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/details.css') }}" rel="stylesheet">
+  
   <script src="https://use.fontawesome.com/86896db091.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet"><link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/details.css') }}" rel="stylesheet">
   <base href="{{env('APP_URL')}}">
 
 </head>
@@ -17,7 +18,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-9 wrap">
+            <div class="wrap">
 
                 <div class="place-info">
                     <span class="place-name">{{ $places -> name }}</span>
@@ -37,7 +38,8 @@
                         @endif
 
                         <span class="hours">{{ $places -> opening_hours }}</span>
-                        <a href="{{action('FavouriteController@insertPlace', ['id'=> $places -> id])}}" data-id="{{ $places -> id }}" id="get_review" type="button" name="add_place">I want to visit this place!</a>
+                        
+                        <!-- <a href="{{action('FavouriteController@insertPlace', ['id'=> $places -> id])}}" data-id="{{ $places -> id }}" id="get_review" class="butt" type="button" name="add_place">I want to visit this place!</a> -->
 
                         <!-- <a type="button" id="btnAdd" value="I want to visit this place" onclick="addItem()"></a> -->
 

@@ -6,11 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://use.fontawesome.com/86896db091.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
-  <link href="{{ asset('css/user.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/map.css') }}" rel="stylesheet">
+  <base href="{{env('APP_URL')}}">
 </head>
 <body>
+    
 
+@include('header')
+<!-- 
+@section('content')
 <form id="filter" action="">
     @foreach($types as $type)
     <label for="types[]">{{ $type -> name }}
@@ -19,10 +25,10 @@
 
 
     @endforeach
-</form>
+</form> -->
 
 
-<div id="map" style="width: 100%; height: 500px"></div>
+<div id="map" style="width: 100%; height: 100%"></div>
 
 
 
@@ -89,6 +95,5 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcmmk2ZB1C9ct-nT4xm3__RK8cSxmDbDo&callback=initMap"></script>
 @endsection
-    
 </body>
 </html>
